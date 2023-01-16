@@ -1,0 +1,7 @@
+{
+  "name": "ionic-larochelle-handicap",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}
