@@ -13,7 +13,9 @@
         </ion-toolbar>
       </ion-header>
 
+      <!-- On placera ici la carte -->
       <map-container id="mapContainer"/>
+
     </ion-content>
   </ion-page>
 </template>
