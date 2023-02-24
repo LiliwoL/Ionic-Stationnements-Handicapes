@@ -24,16 +24,19 @@
 <script>
   import "leaflet/dist/leaflet.css";
   import L from "leaflet";
-  import axios from "axios";
+  //import axios from "axios";
 
   // Import datas
+  // @TODO: Data from MongoDB or API or sqlite
   import data from "../Handicap-Park-Locations.json";
 
   export default {
     name: "MapContainer",
     data() {
       return{
-        center: [46.160328, -1.151139],
+        // Coordonnées de la Rochelle pour centrer la carte
+        // https://www.latlong.net/
+        center: [46.178160, -1.150940],
         data: [],
         map: null,
         attraction: {
@@ -41,23 +44,29 @@
           address: "",
           category: "",
         },
+
+        /* @TODO: Mettre ces infos en lieu sûr */
         clientSecret: "FTZGMLOIQWFY3A0ELEZIZSUU3M4EKOJKEPXKWUWTMWK1EY4H",
         clientID: "GOSFGAOZKCSLMWADY1ORYJV2A4GUNNHAHBVWY500S1IM42CS",
     }},
     methods: {
       setupLeafletMap: function ()
       {
+        // Création de la carte
+        // ---------------------
         this.map = L.map("mapContainer").setView(this.center, 13);
 
         L.tileLayer(
-            "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
+            // Liste de tileLayer disponibles
+            // https://leaflet-extras.github.io/leaflet-providers/preview/
+            'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png',
+            //"https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
             {
               attribution:
-                  'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
+                  'Stationnement Handicapé - Ville de la Rochelle',
               maxZoom: 18,
               id: "mapbox/streets-v11",
-              accessToken:
-                  "pk.eyJ1IjoiYWJpZGlzaGFqaWEiLCJhIjoiY2l3aDFiMG96MDB4eDJva2l6czN3MDN0ZSJ9.p9SUzPUBrCbH7RQLZ4W4lQ",
+              // accessToken: "pk.eyJ1IjoiYWJpZGlzaGFqaWEiLCJhIjoiY2l3aDFiMG96MDB4eDJva2l6czN3MDN0ZSJ9.p9SUzPUBrCbH7RQLZ4W4lQ",
             }
         ).addTo(this.map);
 
@@ -65,11 +74,13 @@
           onEachFeature: this.onEachFeature,
           style: this.styleMap,
         })
-            .addTo(this.map)
-            .on("click", this.onClick);
+            .addTo(this.map);
+
+            // Comportement on click sur un marker
+            //.on("click", this.onClick);
       },
 
-      styleMap(feature){
+      styleMap(){
 
         return {
           "color": "#ff7800",
@@ -79,24 +90,51 @@
 
       },
       onEachFeature(feature, layer) {
+
+        //console.log("Ajout d'un marker " + feature.properties.geo_point_2d[0]);
+
         if (feature.properties && feature.properties.obs)
         {
-          layer.bindPopup(feature.properties.obs);
-          layer.on('mouseover', () => { layer.openPopup(); });
-          layer.on('mouseout', () => { layer.closePopup(); });
+          // ------------------------------------------
+          // Génération du lien d'itinéraire Google Map
+          // ------------------------------------------
+          // Doc: https://developers.google.com/maps/documentation/urls/get-started?hl=fr#directions-action
+          // https://stackoverflow.com/questions/48224834/open-google-maps-app-with-directions-by-coordinates
+          // Exemple: https://www.google.com/maps/dir/?api=1&destination=50.69390757320,10.970328366756
+          let googleItineraryLink = "https://www.google.com/maps/dir/?api=1&";
+          // Destination
+          googleItineraryLink += "destination=" + feature.properties.geo_point_2d[1] + "," + feature.properties.geo_point_2d[0];
+          // Mode de transport Voiture
+          googleItineraryLink += "&travelmode=car";
+
+          //console.log("Lien google Map: " + googleItineraryLink);
+
+
+          // Contenu du popup
+          let popupContent = '<div>' + feature.properties.obs + '</div>';
+          popupContent += '<a href="' + googleItineraryLink + '">Itinéraire Google</a>';
+
+          // Gestion du popup
+          layer.bindPopup( popupContent );
+
+          // Comportement ouverture/fermeture du popup
+          layer.on('click', () => { layer.openPopup(); });
+          //layer.on('mouseout', () => { layer.closePopup(); });
         }
 
         const icons = {
-          'iconCane': L.icon({iconUrl: "/assets/markerIcons/cane.png",iconSize: [20,20]})
+          'iconCane': L.icon({iconUrl: "/assets/markerIcons/cane.png", iconSize: [20,20]})
         }
 
+        // Ajout de l'icône Canne
         if (layer instanceof L.Marker)
         {
           layer.setIcon(icons.iconCane)
         }
       },
       onClick(e) {
-        const name = e.layer.feature.properties.name;
+        console.log("Click " + e);
+        /*const name = e.layer.feature.properties.name;
         axios
             .get(
                 `https://api.foursquare.com/v2/venues/search?client_id=${this.clientID}&client_secret=${this.clientSecret}&v=20180323&limit=1&near=San Francisco, CA&query=${name}`
@@ -109,7 +147,7 @@
                 ),
                 category: data.data.response.venues[0].categories[0].name,
               };
-            });
+            });*/
       }
     },
     mounted() {
