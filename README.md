@@ -12,6 +12,11 @@ Objectifs:
 * MongoDB
 * Leaflet
 
+# Dépendances
+
+```bash
+npm install
+```
 # Utilisation
 
 * Lancement d'une version de dev

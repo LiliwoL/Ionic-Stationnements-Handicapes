@@ -23,7 +23,8 @@
 
 <script>
   import "leaflet/dist/leaflet.css";
-  import L from "leaflet";
+  import { Map, tileLayer, geoJSON, icon, Marker } from 'leaflet';
+
   //import axios from "axios";
 
   // Import datas
@@ -55,7 +56,7 @@
         // Création de la carte
         // ---------------------
         // https://leafletjs.com/reference.html#map-factory
-        this.map = L.map(
+        this.map = new Map(
             "mapContainer",
             {
               zoomControl: false
@@ -63,21 +64,28 @@
             )
             .setView(this.center, 14);
 
-        L.tileLayer(
+        // TileLayer
+        new tileLayer(
             // Liste de tileLayer disponibles
-            // https://leaflet-extras.github.io/leaflet-providers/preview/
-            'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png',
-            //"https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
+            // Exemples: https://leaflet-extras.github.io/leaflet-providers/preview/
+            // ----------------------------------------------------------------------
+
+            //'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png',              // Dark
+            //'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',                                     // Classique
+            "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",       // map
             {
-              attribution:
-                  'Stationnement Handicapé - Ville de la Rochelle',
+              attribution: 'Stationnement Handicapé - Ville de la Rochelle',
               maxZoom: 18,
               id: "mapbox/streets-v11",
-              // accessToken: "pk.eyJ1IjoiYWJpZGlzaGFqaWEiLCJhIjoiY2l3aDFiMG96MDB4eDJva2l6czN3MDN0ZSJ9.p9SUzPUBrCbH7RQLZ4W4lQ",
-            }
-        ).addTo(this.map);
 
-        L.geoJSON(data , {
+              // Si on utilise le tile mapbox
+              accessToken: "pk.eyJ1IjoiYWJpZGlzaGFqaWEiLCJhIjoiY2l3aDFiMG96MDB4eDJva2l6czN3MDN0ZSJ9.p9SUzPUBrCbH7RQLZ4W4lQ",
+            }
+        )
+            .addTo(this.map);
+
+        // Lecture et ajout des données
+        new geoJSON(data , {
           onEachFeature: this.onEachFeature,
           style: this.styleMap,
         })
@@ -130,11 +138,21 @@
         }
 
         const icons = {
-          'iconCane': L.icon({iconUrl: "/assets/markerIcons/cane.png", iconSize: [20,20]})
+          'iconCane': new icon(
+              {
+                iconUrl: "/assets/markerIcons/cane.png",
+                // Taille affichée
+                iconSize: [48,48],
+                // Base de l'icône affiché, 24 est 48/2 (pour éviter les décalage à l'affichage)
+                iconAnchor: [24, 48],
+                // Position de la bulle de texte au clique sur le marqueur
+                popupAnchor: [0, -48]
+              }
+          )
         }
 
         // Ajout de l'icône Canne
-        if (layer instanceof L.Marker)
+        if (layer instanceof Marker)
         {
           layer.setIcon(icons.iconCane)
         }
