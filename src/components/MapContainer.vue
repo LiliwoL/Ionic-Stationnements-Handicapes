@@ -54,7 +54,14 @@
       {
         // Création de la carte
         // ---------------------
-        this.map = L.map("mapContainer").setView(this.center, 13);
+        // https://leafletjs.com/reference.html#map-factory
+        this.map = L.map(
+            "mapContainer",
+            {
+              zoomControl: false
+              }
+            )
+            .setView(this.center, 14);
 
         L.tileLayer(
             // Liste de tileLayer disponibles
