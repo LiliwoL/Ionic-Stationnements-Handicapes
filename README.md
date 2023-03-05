@@ -1,5 +1,6 @@
 # Application mobile Handicap La Rochelle
 
+> Projet en cours
 
 ![img.png](img.png)
 
@@ -15,7 +16,7 @@ Grand Paris:
 https://www.data.gouv.fr/fr/datasets/places-de-stationnement-pmr/
 
 # Objectifs:
-* Fournir aux personnes concernés les emplacements des stationemments handicapés
+* Fournir aux personnes concernées les emplacements des stationemments handicapés
 * Proposer un itinéraire vers la place handicapé la plus proche
 
 # Technologies
@@ -33,4 +34,6 @@ npm install
 # Utilisation
 
 * Lancement d'une version de dev
-ionic serve 
+```bash
+ionic serve
+```
