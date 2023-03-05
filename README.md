@@ -19,6 +19,13 @@ https://www.data.gouv.fr/fr/datasets/places-de-stationnement-pmr/
 * Fournir aux personnes concernées les emplacements des stationemments handicapés
 * Proposer un itinéraire vers la place handicapé la plus proche
 
+# Applications déjà existantes
+
+* Souffle de l'espoir
+  * https://play.google.com/store/apps/details?id=com.detoffolig.handicapcorner&hl=fr&gl=US&pli=1
+* Handicap
+  * https://apps.apple.com/fr/app/handicap-fr/id367001527
+
 # Technologies
 
 * Ionic
