@@ -26,8 +26,4 @@
 </script>
 
 <style scoped>
-#mapContainer {
-  width: 80vw;
-  height: 90vh;
-}
 </style>

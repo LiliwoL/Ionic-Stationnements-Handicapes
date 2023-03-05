@@ -4,9 +4,8 @@
       <ion-router-outlet></ion-router-outlet>
       <ion-tab-bar slot="bottom">
         <ion-tab-button tab="tab1" href="/tabs/carte">
-          <ion-icon :icon="map-outline" />
-          <ion-icon name="map-outline"></ion-icon>
-          <ion-label>Emplacements handicapés</ion-label>
+          <ion-icon :icon="map" />
+          <ion-label>Carte</ion-label>
         </ion-tab-button>
 
         <ion-tab-button tab="tab2" href="/tabs/liste">
