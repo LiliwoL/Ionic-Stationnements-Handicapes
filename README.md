@@ -7,6 +7,7 @@ Une application mobile utilisant les données OpenData de la ville de la rochell
 
 https://opendata.agglo-larochelle.fr/visualisation/information/?id=d7ea2b60-33df-4ce3-ac8b-13344defc666
 
+![img_3.png](img_3.png)
 Paris:
 https://www.paris.fr/pages/le-stationnement-pour-les-personnes-en-situation-de-handicap-7844
 

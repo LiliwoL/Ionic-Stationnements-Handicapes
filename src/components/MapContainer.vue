@@ -203,7 +203,9 @@
 
           // Contenu du popup
           let popupContent = '<div>' + feature.properties.obs + '</div>';
-          popupContent += '<a href="' + googleItineraryLink + '">Itinéraire Google</a>';
+          popupContent += '<a href="' + googleItineraryLink + '">Navigation avec Google Maps</a>';
+          popupContent += '<br/>';
+          popupContent += '<a href="' + googleItineraryLink + '">Navigation avec Waze</a>';
           // Ajout du popup
           layer.bindPopup(
               popupContent,
