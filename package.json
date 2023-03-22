@@ -1,17 +1,14 @@
 {
   "name": "ionic-larochelle-handicap",
   "version": "0.0.1",
+  "homepage": "/Ionic-Stationnements-Handicapes/",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --output-path=docs",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint"
-  },
-  "config": {
-    "ionic_www_dir": "docs",
-    "ionic_build_dir": "build"
   },
   "dependencies": {
     "@capacitor/android": "4.6.1",
