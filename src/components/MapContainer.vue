@@ -32,7 +32,7 @@
         icons : {
           'iconCane': new icon(
               {
-                iconUrl: this.base_url + "/assets/markerIcons/cane.png",
+                iconUrl: "https://liliwol.github.io/Ionic-Stationnements-Handicapes" + "/assets/markerIcons/cane.png",
                 shadowUrl: '',
                 // Taille affichée
                 iconSize: [24,24],
