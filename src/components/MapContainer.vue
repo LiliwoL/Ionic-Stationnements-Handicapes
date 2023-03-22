@@ -23,7 +23,7 @@
         center: [46.178160, -1.150940],
         data: [],
         map: null,
-        base_url: process.env.BASE_URL,
+        base_url: "https://liliwol.github.io/Ionic-Stationnements-Handicapes",
         attraction: {
           name: "",
           address: "",
