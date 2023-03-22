@@ -23,6 +23,7 @@
         center: [46.178160, -1.150940],
         data: [],
         map: null,
+        base_url: process.env.BASE_URL,
         attraction: {
           name: "",
           address: "",
@@ -31,7 +32,7 @@
         icons : {
           'iconCane': new icon(
               {
-                iconUrl: "/assets/markerIcons/cane.png",
+                iconUrl: this.base_url + "/assets/markerIcons/cane.png",
                 shadowUrl: '',
                 // Taille affichée
                 iconSize: [24,24],
