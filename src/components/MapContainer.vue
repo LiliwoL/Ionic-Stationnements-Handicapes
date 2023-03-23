@@ -246,6 +246,7 @@
       console.log("Mounted");
       this.setupLeafletMap();
       this.map.invalidateSize(true);
+      window.dispatchEvent(new Event('resize'));
     }
   };
 </script>
