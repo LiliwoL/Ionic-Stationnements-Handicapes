@@ -79,7 +79,7 @@
         //this.map.on('locationfound', this.onLocationFound);
 
         // TileLayer
-        new tileLayer(
+        /*new tileLayer(
             // Liste de tileLayer disponibles
             // Exemples: https://leaflet-extras.github.io/leaflet-providers/preview/
             // ----------------------------------------------------------------------
@@ -96,11 +96,11 @@
               //accessToken: "pk.eyJ1IjoiYWJpZGlzaGFqaWEiLCJhIjoiY2l3aDFiMG96MDB4eDJva2l6czN3MDN0ZSJ9.p9SUzPUBrCbH7RQLZ4W4lQ",
             }
         )
-            .addTo(this.map);
+            .addTo(this.map);*/
 
 
         // CartoDB_DarkMatter
-        /*new tileLayer
+        new tileLayer
         (
             'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
             {
@@ -109,7 +109,7 @@
               maxZoom: 19
             }
         )
-            .addTo(this.map);*/
+        .addTo(this.map);
 
         // Google Map Layer
         /*const googleStreets = new tileLayer
