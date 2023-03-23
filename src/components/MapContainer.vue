@@ -58,6 +58,8 @@
             .bindPopup("You are within " + radius + " meters from this point").openPopup();
 
         new Circle(e.latlng, radius).addTo(this.map);
+
+        this.map.invalidateSize();
       },
 
       setupLeafletMap: function ()
@@ -184,8 +186,7 @@
       onEachFeature(feature, layer)
       {
         //console.log("Ajout d'un marker " + feature.properties.geo_point_2d[0]);
-
-        console.log(feature);
+        //console.log(feature);
 
         if (feature.properties && feature.properties.obs)
         {
@@ -224,6 +225,7 @@
       },
       onClick(e) {
         console.log("Click " + e);
+        this.map.invalidateSize(true);
         /*const name = e.layer.feature.properties.name;
         axios
             .get(
@@ -241,8 +243,9 @@
       }
     },
     mounted() {
+      console.log("Mounted");
       this.setupLeafletMap();
-      this.map.invalidateSize();
+      this.map.invalidateSize(true);
     }
   };
 </script>
