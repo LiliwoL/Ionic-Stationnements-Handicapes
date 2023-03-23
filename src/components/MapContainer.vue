@@ -242,6 +242,7 @@
     },
     mounted() {
       this.setupLeafletMap();
+      this.map.invalidateSize();
     }
   };
 </script>
