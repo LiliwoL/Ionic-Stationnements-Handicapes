@@ -1,7 +1,6 @@
 {
   "name": "ionic-larochelle-handicap",
   "version": "0.0.1",
-  "homepage": "/Ionic-Stationnements-Handicapes/",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -49,5 +48,5 @@
     "ts-jest": "^27.0.7",
     "typescript": "^4.3.5"
   },
-  "description": "An Ionic project"
+  "description": "An Ionic project for La Rochelle"
 }

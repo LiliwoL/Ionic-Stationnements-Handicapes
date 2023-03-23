@@ -23,7 +23,7 @@
         center: [46.178160, -1.150940],
         data: [],
         map: null,
-        base_url: "https://liliwol.github.io/Ionic-Stationnements-Handicapes",
+        base_url: process.env.VUE_APP_BASE_URL,
         attraction: {
           name: "",
           address: "",
@@ -32,15 +32,15 @@
         icons : {
           'iconCane': new icon(
               {
-                iconUrl: "https://liliwol.github.io/Ionic-Stationnements-Handicapes" + "/assets/markerIcons/cane.png",
+                iconUrl: process.env.VUE_APP_BASE_URL + "/assets/markerIcons/cane.png",
                 shadowUrl: '',
                 // Taille affichée
                 iconSize: [24,24],
-                // Icone ombre
+                // Icon ombre
                 shadowSize:   [0, 0],
-                // Base de l'icône affiché, 24 est 48/2 (pour éviter les décalage à l'affichage)
+                // Base de l'icône affichée, 24 est 48/2 (pour éviter les décalages à l'affichage)
                 //iconAnchor: [12, 24],
-                // Position de la bulle de texte au clique sur le marqueur
+                // Position de la bulle de texte au clic sur le marqueur
                 //popupAnchor: [0, -24]
               }
           )
@@ -68,10 +68,11 @@
         this.map = new Map(
             "mapContainer",
             {
-              zoomControl: false
-              }
-            )
-            .setView(this.center, 14);
+              zoomControl: false,
+              trackResize: false
+            }
+        )
+        .setView(this.center, 16);
 
         // Demande la localisation
         //this.map.locate({setView: this.center, zoom: 14, maxZoom: 18});
@@ -83,8 +84,8 @@
             // Exemples: https://leaflet-extras.github.io/leaflet-providers/preview/
             // ----------------------------------------------------------------------
 
-            //'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png',              // Dark
-            'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',                                     // Classique
+            'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png',              // Dark
+            //'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',                                     // Classique
             //"https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",       // map
             {
               attribution: 'Stationnement Handicapé - Ville de la Rochelle',
@@ -92,7 +93,7 @@
               id: "mapbox/streets-v11",
 
               // Si on utilise le tile mapbox
-              accessToken: "pk.eyJ1IjoiYWJpZGlzaGFqaWEiLCJhIjoiY2l3aDFiMG96MDB4eDJva2l6czN3MDN0ZSJ9.p9SUzPUBrCbH7RQLZ4W4lQ",
+              //accessToken: "pk.eyJ1IjoiYWJpZGlzaGFqaWEiLCJhIjoiY2l3aDFiMG96MDB4eDJva2l6czN3MDN0ZSJ9.p9SUzPUBrCbH7RQLZ4W4lQ",
             }
         )
             .addTo(this.map);
@@ -249,5 +250,6 @@
   #mapContainer {
     width: 100%;
     height: 90vh;
+    max-height: 90vh;
   }
 </style>

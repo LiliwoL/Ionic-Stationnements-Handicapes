@@ -1,7 +1,7 @@
 module.exports = {
-    publicPath: process.env.NODE_ENV === 'production'
-        ? '/Ionic-Stationnements-Handicapes/'
-        : '/Ionic-Stationnements-Handicapes/',
+    // Utilisé pour le base href
+    publicPath: process.env.VUE_APP_BASE_URL,
 
+    /// Dossier output pour les builds
     outputDir: 'docs'
 }
